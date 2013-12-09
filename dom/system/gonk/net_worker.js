@@ -759,6 +759,8 @@ function dumpParams(params, type) {
 }
 
 function chain(params, funcs, onError) {
+  console.log("**DBG**:net_worker.js:func chain---log+++++++");
+  console.dir( params );
   let i = -1;
   let f = funcs[i];
   function next(error, result) {

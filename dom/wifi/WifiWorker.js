@@ -92,6 +92,10 @@ XPCOMUtils.defineLazyServiceGetter(this, "gSettingsService",
                                    "@mozilla.org/settingsService;1",
                                    "nsISettingsService");
 
+XPCOMUtils.defineLazyServiceGetter(this, "gRil",
+                                   "@mozilla.org/ril;1",
+                                   "nsIRadioInterfaceLayer");
+
 // A note about errors and error handling in this file:
 // The libraries that we use in this file are intended for C code. For
 // C code, it is natural to return -1 for errors and 0 for success.
@@ -2938,6 +2942,19 @@ WifiWorker.prototype = {
         }
       }.bind(this));
     }
+
+    // テスト-s ここに処理を入れてみる
+    // 強制変更先のAPNの読み込みを実施
+
+//    // APN の反映を行う
+//   for (let i = 0; i < gRil.numRadioInterfaces; i++) {
+//      var hoge = gRil.getRadioInterface(i);
+//      // APN の設定(保存)
+//      hoge.updateAPNSettings();
+//      // APN の反映
+//      hoge.updateRILNetworkInterfaces();
+//    }
+//    // テスト-e
 
     this.queueRequest(enabled, function(data) {
       this.setWifiApEnabled(data, this.requestDone.bind(this));
